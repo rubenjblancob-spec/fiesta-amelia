@@ -1,1582 +1,987 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>👑🏊‍♀️ Fiesta Real de Piscina - Princesa Amelia (5 Años)</title>
-    <style>
-        /* ==========================================================================
-           1. VARIABLES DE DISEÑO Y PALETA REAL (VIOLETA, TURQUESA PISCINA Y DORADO)
-           ========================================================================== */
-        :root {
-            --violet-deep: #2e1065;
-            --violet-royal: #5b21b6;
-            --violet-bright: #7c3aed;
-            --aqua-deep: #0e7490;
-            --aqua-bright: #06b6d4;
-            --aqua-light: #67e8f9;
-            --gold-dark: #b45309;
-            --gold-mid: #f59e0b;
-            --gold-light: #fde047;
-            --gold-pale: #fef9c3;
-            --white: #ffffff;
-            --card-shadow: 0 16px 40px rgba(24, 6, 56, 0.65);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>👑 Pool Party Real de la Princesa Amelia • 5 Años</title>
+  
+  <!-- Vista previa elegante al compartir por WhatsApp -->
+  <meta property="og:title" content="👑 ¡Tienes un Llamado Real de la Princesa Amelia!" />
+  <meta property="og:description" content="Cumpleaños #5 • Pool Party Real 💦✨ Abre tu invitación mágica, supera el reto y reclama tu Boleto Dorado VIP." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#4c1d95" />
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-        }
+  <style>
+    :root {
+      --violeta-oscuro: #2e1065;
+      --violeta-real: #6d28d9;
+      --violeta-claro: #a78bfa;
+      --aqua-piscina: #06b6d4;
+      --aqua-brillo: #67e8f9;
+      --dorado: #fbbf24;
+      --dorado-oscuro: #b45309;
+      --dorado-claro: #fef08a;
+      --blanco: #ffffff;
+    }
 
-        html, body {
-            width: 100%;
-            min-height: 100vh;
-            min-height: 100dvh;
-            overflow-x: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: radial-gradient(circle at top, #7c3aed 0%, #4c1d95 45%, #164e63 100%);
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        /* ==========================================================================
-           2. FONDO ANIMADO DE BURBUJAS DE PISCINA Y DESTELLOS DORADOS
-           ========================================================================== */
-        .ambient-bg {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background-image:
-                radial-gradient(3px 3px at 25px 40px, #fde047, transparent),
-                radial-gradient(4px 4px at 95px 140px, #67e8f9, transparent),
-                radial-gradient(3px 3px at 175px 70px, #e9d5ff, transparent),
-                radial-gradient(3.5px 3.5px at 260px 210px, #fde047, transparent),
-                radial-gradient(5px 5px at 320px 110px, rgba(103, 232, 249, 0.7), transparent);
-            background-size: 360px 280px;
-            animation: floatAmbient 11s linear infinite;
-            opacity: 0.65;
-        }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top, #5b21b6 0%, #2e1065 55%, #170836 100%);
+      color: var(--blanco);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 16px;
+      position: relative;
+    }
 
-        @keyframes floatAmbient {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-280px); }
-        }
+    /* Burbujas y destellos de fondo */
+    .bg-particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
 
-        /* ==========================================================================
-           3. CONTROLES FLOTANTES SUPERIORES (MODO ORGANIZADOR Y SONIDO)
-           ========================================================================== */
-        .top-controls {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            z-index: 90;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: none;
-        }
+    .bubble {
+      position: absolute;
+      bottom: -40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), rgba(103, 232, 249, 0.15));
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      animation: floatUp linear infinite;
+    }
 
-        .floating-pill-btn {
-            pointer-events: auto;
-            background: rgba(46, 16, 101, 0.82);
-            border: 1.5px solid var(--gold-light);
-            color: var(--gold-light);
-            padding: 8px 13px;
-            border-radius: 999px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(6px);
-            transition: transform 0.15s ease;
-        }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      15% { opacity: 0.7; }
+      85% { opacity: 0.5; }
+      100% { transform: translateY(-110vh) scale(1.25); opacity: 0; }
+    }
 
-        .floating-pill-btn:active {
-            transform: scale(0.94);
-        }
+    /* Contenedor Principal */
+    .app-container {
+      width: 100%;
+      max-width: 430px;
+      position: relative;
+      z-index: 2;
+    }
 
-        .sound-btn {
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            justify-content: center;
-            font-size: 1.15rem;
-        }
+    .card {
+      background: rgba(46, 16, 101, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid rgba(251, 191, 36, 0.45);
+      border-radius: 28px;
+      padding: 24px 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 0 25px rgba(167, 139, 250, 0.15);
+      text-align: center;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
 
-        /* ==========================================================================
-           4. CONTENEDOR PRINCIPAL Y PANTALLAS
-           ========================================================================== */
-        .app-wrapper {
-            width: 100%;
-            max-width: 450px;
-            min-height: 100dvh;
-            padding: 62px 16px 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-        }
+    .hidden {
+      display: none !important;
+    }
 
-        .screen {
-            display: none;
-            width: 100%;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            animation: screenFadeIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-        }
+    /* Tipografía y Cabeceras */
+    .crown-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(6, 182, 212, 0.2));
+      border: 1px solid rgba(251, 191, 36, 0.5);
+      color: var(--dorado-claro);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
 
-        .screen.active {
-            display: flex;
-        }
+    h1 {
+      font-size: 1.75rem;
+      line-height: 1.2;
+      background: linear-gradient(to right, #fef08a, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 12px rgba(251, 191, 36, 0.2);
+    }
 
-        @keyframes screenFadeIn {
-            from { opacity: 0; transform: translateY(14px) scale(0.97); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+    .guest-greeting {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--aqua-brillo);
+      margin-bottom: 8px;
+    }
 
-        .royal-serif {
-            font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
-            letter-spacing: 0.4px;
-        }
+    .subtitle {
+      font-size: 0.95rem;
+      color: #e9d5ff;
+      line-height: 1.45;
+      margin-bottom: 18px;
+    }
 
-        .guest-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: linear-gradient(90deg, rgba(6, 182, 212, 0.28), rgba(124, 58, 237, 0.42));
-            border: 1.5px solid var(--aqua-light);
-            color: #ecfeff;
-            padding: 6px 16px;
-            border-radius: 999px;
-            font-size: 0.92rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.25);
-        }
+    /* Botones Reales */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      margin-top: 10px;
+    }
 
-        /* Botones principales dorados y secundarios */
-        .btn-gold {
-            width: 100%;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #fde047 0%, #f59e0b 55%, #d97706 100%);
-            color: #2e1065;
-            font-size: 1.02rem;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-decoration: none;
-            transition: transform 0.15s ease, filter 0.15s ease;
-        }
+    .btn:active {
+      transform: scale(0.97);
+    }
 
-        .btn-gold:active {
-            transform: scale(0.96);
-        }
+    .btn-gold {
+      background: linear-gradient(135deg, #fef08a 0%, #fbbf24 50%, #d97706 100%);
+      color: #2e1065;
+      box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+    }
 
-        .btn-whatsapp {
-            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-            color: #ffffff;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
+    .btn-aqua {
+      background: linear-gradient(135deg, #22d3ee 0%, #0284c7 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(6, 182, 212, 0.35);
+    }
 
-        .btn-aqua {
-            background: linear-gradient(135deg, #22d3ee 0%, #0891b2 100%);
-            color: #083344;
-            box-shadow: 0 6px 18px rgba(6, 182, 212, 0.35);
-        }
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+    }
 
-        .btn-outline {
-            background: rgba(46, 16, 101, 0.72);
-            border: 1.5px solid var(--gold-light);
-            color: var(--gold-pale);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-        }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      color: var(--dorado-claro);
+      font-size: 0.9rem;
+      padding: 11px 16px;
+    }
 
-        .btn-link-subtle {
-            background: none;
-            border: none;
-            color: #bae6fd;
-            text-decoration: underline;
-            font-size: 0.86rem;
-            font-weight: 600;
-            margin-top: 12px;
-            padding: 8px 12px;
-            cursor: pointer;
-        }
+    /* PANTALLA 1: Raspa y Gana */
+    .scratch-wrapper {
+      position: relative;
+      width: 280px;
+      height: 190px;
+      margin: 0 auto 14px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid var(--dorado);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      background: linear-gradient(135deg, #fdf4ff 0%, #e0f2fe 100%);
+      touch-action: none;
+    }
 
-        /* ==========================================================================
-           5. ETAPA 1: EL PERGAMINO MÁGICO DE AGUA (RASPA Y GANA)
-           ========================================================================== */
-        .scroll-frame {
-            width: 100%;
-            background: linear-gradient(165deg, rgba(91, 33, 182, 0.6), rgba(30, 11, 68, 0.9));
-            border: 2px solid rgba(253, 224, 71, 0.65);
-            border-radius: 24px;
-            padding: 18px 16px;
-            box-shadow: var(--card-shadow);
-            backdrop-filter: blur(8px);
-        }
+    .scratch-secret {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      color: #3b0764;
+      z-index: 1;
+    }
 
-        .scratch-box {
-            position: relative;
-            width: 100%;
-            height: 275px;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 3px solid var(--gold-light);
-            background: linear-gradient(135deg, #fef9c3 0%, #f3e8ff 52%, #cffafe 100%);
-            box-shadow: inset 0 0 20px rgba(91, 33, 182, 0.15);
-            touch-action: none;
-        }
+    .scratch-secret .big-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 6px;
+    }
 
-        .secret-message {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            padding: 18px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #2e1065;
-        }
+    .scratch-secret p {
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
 
-        .secret-message h3 {
-            font-size: 1.18rem;
-            color: #5b21b6;
-            margin-bottom: 8px;
-        }
+    #scratchCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      cursor: grab;
+      touch-action: none;
+    }
 
-        .secret-message p {
-            font-size: 0.97rem;
-            line-height: 1.45;
-            font-weight: 600;
-            color: #3b0764;
-        }
+    .progress-bar-bg {
+      width: 80%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      margin: 8px auto 0;
+      overflow: hidden;
+    }
 
-        .pool-pill {
-            display: inline-block;
-            background: linear-gradient(90deg, #0891b2, #06b6d4);
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 0.82rem;
-            padding: 4px 12px;
-            border-radius: 999px;
-            margin: 8px 0;
-        }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--aqua-piscina), var(--dorado));
+      transition: width 0.15s ease;
+    }
 
-        #scratchCanvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            cursor: pointer;
-            touch-action: none;
-            transition: opacity 0.45s ease;
-        }
+    /* PANTALLA 2: Minijuego Atrapa las Gemas */
+    .game-hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(23, 8, 54, 0.7);
+      border: 1px solid rgba(103, 232, 249, 0.35);
+      border-radius: 14px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
 
-        /* ==========================================================================
-           6. ETAPA 2: LA PRUEBA DE LA CORONA ACUÁTICA (ATRAPA 7 TESOROS)
-           ========================================================================== */
-        .progress-track {
-            width: 100%;
-            height: 28px;
-            background: rgba(24, 6, 56, 0.85);
-            border: 2px solid var(--gold-light);
-            border-radius: 999px;
-            overflow: hidden;
-            position: relative;
-            margin: 10px 0 12px;
-        }
+    #gameCanvas {
+      width: 100%;
+      height: 310px;
+      background: linear-gradient(180deg, #1e1b4b 0%, #3b0764 65%, #0891b2 100%);
+      border-radius: 20px;
+      border: 2px solid var(--aqua-piscina);
+      display: block;
+      touch-action: none;
+      box-shadow: inset 0 0 25px rgba(6, 182, 212, 0.35);
+    }
 
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #06b6d4, #a855f7, #fde047);
-            transition: width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
+    /* PANTALLA 3: Boleto Dorado VIP */
+    .golden-ticket {
+      position: relative;
+      background: linear-gradient(135deg, #fef08a 0%, #f59e0b 35%, #fbbf24 65%, #fef9c3 100%);
+      color: #2e1065;
+      border-radius: 22px;
+      padding: 22px 18px;
+      border: 3px solid #ffffff;
+      box-shadow: 0 15px 35px rgba(245, 158, 11, 0.45);
+      overflow: hidden;
+      margin-bottom: 14px;
+      text-align: center;
+    }
 
-        .progress-text {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.86rem;
-            font-weight: 800;
-            color: #ffffff;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
-        }
+    .golden-ticket::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 45%;
+      height: 200%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.65), transparent);
+      transform: rotate(25deg);
+      animation: shineSweep 3.5s infinite;
+      pointer-events: none;
+    }
 
-        .game-stage {
-            position: relative;
-            width: 100%;
-            height: 56dvh;
-            min-height: 320px;
-            max-height: 430px;
-            border-radius: 22px;
-            border: 2.5px solid var(--gold-light);
-            overflow: hidden;
-            background: linear-gradient(180deg, #3b0764 0%, #5b21b6 55%, #0e7490 88%, #06b6d4 100%);
-            box-shadow: var(--card-shadow);
-            touch-action: none;
-        }
+    @keyframes shineSweep {
+      0% { left: -60%; }
+      45%, 100% { left: 130%; }
+    }
 
-        #gameCanvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-            touch-action: none;
-        }
+    .ticket-header {
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #78350f;
+      border-bottom: 1.5px dashed rgba(120, 53, 15, 0.4);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
 
-        /* ==========================================================================
-           7. ETAPA 3: ¡EL BOLETO DORADO VIP!
-           ========================================================================== */
-        .ticket-outer {
-            width: 100%;
-            padding: 5px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, #fde047 0%, #f59e0b 35%, #fef08a 65%, #b45309 100%);
-            box-shadow: 0 16px 42px rgba(0, 0, 0, 0.65), 0 0 24px rgba(253, 224, 71, 0.35);
-            position: relative;
-        }
+    .ticket-title {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: #3b0764;
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
 
-        .ticket-inner {
-            background: radial-gradient(circle at top, #5b21b6 0%, #2e1065 65%, #164e63 100%);
-            border: 2px dashed #fde047;
-            border-radius: 20px;
-            padding: 18px 14px;
-            position: relative;
-            overflow: hidden;
-        }
+    .ticket-subtitle {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #0e7490;
+      margin-bottom: 12px;
+    }
 
-        .ticket-ribbon {
-            display: inline-block;
-            background: linear-gradient(90deg, #fde047, #fef9c3, #f59e0b);
-            color: #2e1065;
-            font-size: 0.72rem;
-            font-weight: 900;
-            letter-spacing: 0.8px;
-            padding: 5px 12px;
-            border-radius: 999px;
-            margin-bottom: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
-        }
+    .ticket-vip-box {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1.5px solid #d97706;
+      border-radius: 14px;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
 
-        .vip-guest-card {
-            background: rgba(6, 182, 212, 0.18);
-            border: 1.5px solid var(--aqua-light);
-            border-radius: 14px;
-            padding: 8px 12px;
-            margin-bottom: 10px;
-        }
+    .ticket-vip-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #92400e;
+      letter-spacing: 1px;
+    }
 
-        .vip-guest-label {
-            display: block;
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.9px;
-            color: #a5f3fc;
-            font-weight: 700;
-        }
+    .ticket-vip-name {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #4c1d95;
+      margin-top: 2px;
+    }
 
-        .vip-guest-name {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
+    .ticket-details {
+      text-align: left;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #1e1b4b;
+      background: rgba(255, 255, 255, 0.55);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
 
-        .celebrant-title {
-            font-size: 1.45rem;
-            color: #fde047;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-            margin: 4px 0;
-        }
+    .ticket-details p {
+      margin-bottom: 4px;
+    }
 
-        .age-pill {
-            display: inline-block;
-            background: rgba(253, 224, 71, 0.2);
-            border: 1px solid #fde047;
-            color: #fef9c3;
-            font-weight: 800;
-            font-size: 0.88rem;
-            padding: 4px 14px;
-            border-radius: 999px;
-            margin-bottom: 10px;
-        }
+    .ticket-details p:last-child {
+      margin-bottom: 0;
+    }
 
-        .details-box {
-            background: rgba(255, 255, 255, 0.09);
-            border: 1px solid rgba(253, 224, 71, 0.35);
-            border-radius: 14px;
-            padding: 12px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
+    .ticket-code {
+      font-family: monospace;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #78350f;
+      letter-spacing: 1.5px;
+      border-top: 1.5px dashed rgba(120, 53, 15, 0.4);
+      padding-top: 8px;
+    }
 
-        .detail-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.92rem;
-            line-height: 1.35;
-        }
+    /* Panel Organizador (Solo visible con ?admin=1) */
+    .admin-panel {
+      background: rgba(15, 23, 42, 0.95);
+      border: 2px solid var(--aqua-piscina);
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 16px;
+      text-align: left;
+    }
 
-        .detail-item .icon {
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
+    .admin-panel h2 {
+      font-size: 1.15rem;
+      color: var(--aqua-brillo);
+      margin-bottom: 6px;
+    }
 
-        .detail-item .label {
-            display: block;
-            font-size: 0.72rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #fde047;
-            letter-spacing: 0.5px;
-        }
+    .admin-panel p {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
 
-        .swim-reminder {
-            background: rgba(6, 182, 212, 0.22);
-            border: 1px dashed #67e8f9;
-            border-radius: 12px;
-            padding: 8px 10px;
-            font-size: 0.84rem;
-            font-weight: 700;
-            color: #ecfeff;
-        }
+    .admin-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #475569;
+      background: #1e293b;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      outline: none;
+    }
 
-        .ticket-actions {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 14px;
-        }
+    .admin-input:focus {
+      border-color: var(--dorado);
+    }
 
-        /* ==========================================================================
-           8. MODALES (MODO ORGANIZADOR Y VISTA PREVIA PNG)
-           ========================================================================== */
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            z-index: 200;
-            background: rgba(15, 4, 38, 0.88);
-            backdrop-filter: blur(8px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
+    .generated-box {
+      background: #0f172a;
+      border: 1px dashed var(--dorado);
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 0.8rem;
+      color: var(--dorado-claro);
+      word-break: break-all;
+      margin-top: 10px;
+    }
 
-        .modal-backdrop.open {
-            display: flex;
-            animation: screenFadeIn 0.3s ease;
-        }
+    /* Modal para guardar imagen en móviles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
 
-        .modal-panel {
-            width: 100%;
-            max-width: 400px;
-            background: linear-gradient(160deg, #4c1d95 0%, #2e1065 65%, #164e63 100%);
-            border: 2px solid var(--gold-light);
-            border-radius: 22px;
-            padding: 22px 18px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-            max-height: 92dvh;
-            overflow-y: auto;
-        }
+    .modal-content {
+      background: #2e1065;
+      border: 2px solid var(--dorado);
+      border-radius: 20px;
+      padding: 18px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+    }
 
-        .guest-input {
-            width: 100%;
-            padding: 13px 14px;
-            border-radius: 14px;
-            border: 2px solid var(--aqua-light);
-            background: #ffffff;
-            color: #2e1065;
-            font-size: 1rem;
-            font-weight: 700;
-            text-align: center;
-            margin: 12px 0;
-            outline: none;
-            user-select: text;
-        }
+    .modal-content img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 12px 0;
+      border: 2px solid #fff;
+    }
 
-        .link-result-box {
-            display: none;
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 14px;
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px dashed var(--aqua-light);
-            text-align: left;
-        }
+    /* Confeti */
+    .confetti-piece {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -15px;
+      z-index: 40;
+      pointer-events: none;
+      animation: confettiFall linear forwards;
+    }
 
-        .link-preview-text {
-            font-family: monospace;
-            font-size: 0.78rem;
-            color: #67e8f9;
-            word-break: break-all;
-            margin-bottom: 10px;
-            user-select: all;
-        }
-
-        /* Canvas de confeti global */
-        #confettiCanvas {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 80;
-        }
-
-        /* Notificación flotante tipo Toast */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(80px);
-            z-index: 300;
-            background: #2e1065;
-            border: 1.5px solid var(--gold-light);
-            color: #ffffff;
-            padding: 10px 18px;
-            border-radius: 999px;
-            font-size: 0.88rem;
-            font-weight: 700;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-    </style>
+    @keyframes confettiFall {
+      to {
+        transform: translateY(105vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="ambient-bg"></div>
-    <canvas id="confettiCanvas"></canvas>
-    <div id="toast" class="toast">✨ Listo</div>
+  <!-- Burbujas decorativas -->
+  <div class="bg-particles" id="bgParticles"></div>
 
-    <!-- Barra superior discreta: Modo Organizador + Botón de Audio -->
-    <div class="top-controls">
-        <button id="btnOpenOrganizer" class="floating-pill-btn" type="button" title="Crear invitación personalizada para cada invitado">
-            👑 Modo Organizador
-        </button>
-        <button id="btnToggleSound" class="floating-pill-btn sound-btn" type="button" aria-label="Activar o silenciar sonido">
-            🔊
-        </button>
+  <div class="app-container">
+
+    <!-- PANEL ORGANIZADOR (Oculto por defecto; solo abre si la URL tiene ?admin=1) -->
+    <div id="adminPanel" class="admin-panel hidden">
+      <h2>👑 Generador de Invitaciones</h2>
+      <p>Este panel es privado (tus invitados no lo ven). Escribe el nombre del invitado o familia para crear su enlace único:</p>
+      <input type="text" id="adminGuestInput" class="admin-input" placeholder="Ej: Sofía, Mateo, Familia Gómez..." />
+      <button class="btn btn-gold" onclick="generarEnlaceInvitado()">✨ Generar Enlace Personalizado</button>
+      
+      <div id="adminResult" class="hidden">
+        <div class="generated-box" id="generatedUrlText"></div>
+        <button class="btn btn-whatsapp" onclick="copiarEnlace()">📋 Copiar Enlace para WhatsApp</button>
+        <button class="btn btn-outline" onclick="probarComoInvitado()">👀 Probar esta invitación ahora</button>
+      </div>
     </div>
 
-    <!-- ==========================================================================
-         MODAL MODO ORGANIZADOR (GENERADOR DE ENLACES PERSONALIZADOS)
-         ========================================================================== -->
-    <div id="organizerModal" class="modal-backdrop">
-        <div class="modal-panel">
-            <div style="font-size: 2.2rem; margin-bottom: 4px;">👑🏊‍♀️✨</div>
-            <h2 class="royal-serif" style="font-size: 1.25rem; color: #fde047; margin-bottom: 6px;">
-                Invitación Personalizada
-            </h2>
-            <p style="font-size: 0.88rem; color: #e0f2fe; line-height: 1.4;">
-                Escribe el nombre del niño, niña o familia invitada para crear su enlace único de WhatsApp:
-            </p>
+    <!-- PANTALLA 1: EL PERGAMINO MÁGICO (RASPA Y GANA) -->
+    <div id="screen1" class="card">
+      <div class="crown-badge">👑 Reino Encantado • 5 Años</div>
+      <div class="guest-greeting" id="greeting1">¡Hola, Invitado Real! ✨</div>
+      <h1>Princesa Amelia</h1>
+      <p class="subtitle">Has recibido un mensaje secreto desde la piscina del castillo. <strong>Desliza tu dedo</strong> sobre el sello mágico para descubrirlo:</p>
 
-            <input
-                type="text"
-                id="organizerInput"
-                class="guest-input"
-                placeholder="Ej: Sofía, Mateo, Familia Gómez..."
-                maxlength="34"
-                autocomplete="off"
-            />
-
-            <button id="btnCreateLink" class="btn-gold" type="button">
-                🔗 Generar Enlace Personalizado
-            </button>
-
-            <div id="linkResultBox" class="link-result-box">
-                <div style="font-size: 0.76rem; color: #fde047; font-weight: 700; margin-bottom: 4px;">
-                    Enlace listo para enviar por WhatsApp:
-                </div>
-                <div id="linkPreviewText" class="link-preview-text"></div>
-                <div style="display: flex; gap: 8px;">
-                    <button id="btnCopyLink" class="btn-gold btn-aqua" type="button" style="padding: 10px; font-size: 0.88rem;">
-                        📋 Copiar Enlace
-                    </button>
-                    <button id="btnTestGuest" class="btn-gold" type="button" style="padding: 10px; font-size: 0.88rem;">
-                        👀 Probar como este invitado
-                    </button>
-                </div>
-            </div>
-
-            <button id="btnPreviewNoLink" class="btn-link-subtle" type="button">
-                Vista previa sin enlace (Invitado Especial) →
-            </button>
+      <div class="scratch-wrapper">
+        <div class="scratch-secret">
+          <div class="big-emoji">🧜‍♀️👑💦</div>
+          <p>¡Estás invitado a la<br>Pool Party Real de Amelia!</p>
         </div>
+        <canvas id="scratchCanvas" width="280" height="190"></canvas>
+      </div>
+
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="scratchProgress"></div>
+      </div>
+
+      <button id="btnToGame" class="btn btn-gold hidden" onclick="iniciarJuego()">
+        ✨ Superar el Reto del Boleto Dorado
+      </button>
     </div>
 
-    <!-- ==========================================================================
-         MODAL DE RESPALDO PARA DESCARGA / GUARDADO DEL BOLETO PNG
-         ========================================================================== -->
-    <div id="ticketImageModal" class="modal-backdrop">
-        <div class="modal-panel">
-            <h3 class="royal-serif" style="color: #fde047; font-size: 1.15rem; margin-bottom: 6px;">
-                🎟️ Tu Boleto Dorado VIP
-            </h3>
-            <p style="font-size: 0.84rem; color: #e0f2fe; margin-bottom: 10px;">
-                Mantén presionada la imagen para guardarla en tu galería o tómale captura de pantalla:
-            </p>
-            <img id="ticketPreviewImg" alt="Boleto Dorado VIP Princesa Amelia" style="width: 100%; border-radius: 14px; border: 2px solid #fde047; margin-bottom: 12px;" />
-            <button id="btnCloseImageModal" class="btn-gold" type="button">
-                Listo, volver al boleto
-            </button>
+    <!-- PANTALLA 2: MINIJUEGO ATRAPA LAS CORONAS ACUÁTICAS -->
+    <div id="screen2" class="card hidden">
+      <div class="crown-badge">💦 Desafío Real</div>
+      <h1>Atrapa 8 Tesoros</h1>
+      <p class="subtitle" style="margin-bottom: 10px;">Mueve la concha mágica de lado a lado para atrapar coronas y estrellas marinas.</p>
+
+      <div class="game-hud">
+        <span>👑 Tesoros: <strong id="scoreText" style="color: var(--dorado);">0 / 8</strong></span>
+        <span id="gameGuestTag" style="color: var(--aqua-brillo);">Invitado VIP</span>
+      </div>
+
+      <canvas id="gameCanvas" width="360" height="310"></canvas>
+    </div>
+
+    <!-- PANTALLA 3: EL BOLETO DORADO VIP -->
+    <div id="screen3" class="card hidden">
+      <div class="crown-badge">🎉 ¡Misión Cumplida!</div>
+      <h1>¡Ganaste tu Pase!</h1>
+      <p class="subtitle" style="margin-bottom: 14px;">Presenta este Boleto Dorado en la entrada del castillo:</p>
+
+      <div class="golden-ticket">
+        <div class="ticket-header">🎟️ BOLETO DORADO OFICIAL • PASE VIP 🎟️</div>
+        <div class="ticket-title">Princesa Amelia</div>
+        <div class="ticket-subtitle">👑 Cumpleaños #5 • Pool Party Real 💦</div>
+
+        <div class="ticket-vip-box">
+          <div class="ticket-vip-label">Invitado(a) de Honor</div>
+          <div class="ticket-vip-name" id="ticketGuestName">Invitado Especial</div>
         </div>
+
+        <div class="ticket-details">
+          <p>📅 <strong>Fecha:</strong> Domingo 29 de Noviembre</p>
+          <p>🕙 <strong>Hora:</strong> 10:00 a.m.</p>
+          <p>📍 <strong>Lugar:</strong> Condominio Altamira, San Pablo de Heredia</p>
+          <p>👙 <strong>Traer:</strong> Traje de baño, paño y muchas ganas de jugar</p>
+        </div>
+
+        <div class="ticket-code" id="ticketCode">PASE REAL #AMELIA-05</div>
+      </div>
+
+      <a id="btnWhatsapp" href="#" target="_blank" class="btn btn-whatsapp">
+        💬 Confirmar Asistencia por WhatsApp
+      </a>
+
+      <button class="btn btn-gold" onclick="descargarBoletoPNG()">
+        📥 Guardar Boleto Dorado en mi Celular
+      </button>
+
+      <a href="https://www.google.com/maps/search/?api=1&query=Condominio+Altamira+San+Pablo+Heredia+Costa+Rica" target="_blank" class="btn btn-aqua">
+        📍 Ver Ubicación en Google Maps
+      </a>
     </div>
 
-    <!-- ==========================================================================
-         CONTENEDOR PRINCIPAL DE LA EXPERIENCIA (3 ETAPAS)
-         ========================================================================== -->
-    <main class="app-wrapper">
+  </div>
 
-        <!-- ETAPA 1: EL PERGAMINO MÁGICO DE AGUA (RASPA Y GANA) -->
-        <section id="stage1" class="screen active">
-            <div style="font-size: 2.3rem; margin-bottom: 4px;">👑🏊‍♀️🐚</div>
-            <div class="guest-badge">
-                ✨ ¡Hola, <span id="guestLabel1">Invitado(a) Especial</span>!
-            </div>
-            <h1 class="royal-serif" style="font-size: 1.42rem; color: #fde047; margin-bottom: 4px;">
-                Pergamino Mágico del Reino
-            </h1>
-            <p style="font-size: 0.92rem; color: #cffafe; margin-bottom: 12px;">
-                Pasa tu dedito sobre las burbujas para descubrir tu invitación
-            </p>
+  <!-- Modal para guardar imagen en móviles -->
+  <div id="imageModal" class="modal-overlay hidden" onclick="cerrarModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h3 style="color: var(--dorado); margin-bottom: 4px;">🎟️ Tu Boleto Dorado</h3>
+      <p style="font-size: 0.85rem; color: #e9d5ff;">Mantén presionada la imagen para guardarla en tus fotos:</p>
+      <img id="ticketPreviewImg" alt="Boleto Dorado Amelia" />
+      <button class="btn btn-gold" onclick="document.getElementById('imageModal').classList.add('hidden')">Listo</button>
+    </div>
+  </div>
 
-            <div class="scroll-frame">
-                <div class="scratch-box" id="scratchBox">
-                    <div class="secret-message">
-                        <div style="font-size: 1.7rem; margin-bottom: 4px;">👑💦✨</div>
-                        <h3 class="royal-serif">¡Decreto Real para <span id="guestLabelDecree">ti</span>!</h3>
-                        <p>
-                            La <strong>Princesa Amelia</strong> celebra sus <strong>5 Años</strong> con una gran
-                        </p>
-                        <div class="pool-pill">🌊 Fiesta Real de Piscina 🌊</div>
-                        <p style="font-size: 0.9rem;">
-                            Supera el reto acuático para ganar tu <strong>Boleto Dorado VIP</strong>.
-                        </p>
-                    </div>
-                    <canvas id="scratchCanvas"></canvas>
-                </div>
+  <script>
+    // ==========================================
+    // CONFIGURACIÓN PRINCIPAL (EDITA TU NÚMERO AQUÍ)
+    // ==========================================
+    const TELEFONO_WHATSAPP = "50688888888"; // Cambia por tu número con código de país (ej: 50688888888)
 
-                <div id="stage1NextWrap" style="display: none; margin-top: 14px;">
-                    <button id="btnGoStage2" class="btn-gold" type="button">
-                        ✨ Jugar por mi Boleto Dorado
-                    </button>
-                </div>
+    // Obtener parámetros de la URL
+    const params = new URLSearchParams(window.location.search);
+    const rawInvitado = params.get("invitado");
+    const isAdmin = params.get("admin") === "1";
 
-                <button id="btnRevealFallback" class="btn-link-subtle" type="button" style="display: none;">
-                    Revelar Sello Mágico ✨
-                </button>
-            </div>
-        </section>
+    const nombreInvitado = rawInvitado && rawInvitado.trim() !== ""
+      ? decodeURIComponent(rawInvitado.trim())
+      : "Invitado Especial";
 
-        <!-- ETAPA 2: LA PRUEBA DE LA CORONA ACUÁTICA (ATRAPA 7 ESTRELLAS Y BURBUJAS) -->
-        <section id="stage2" class="screen">
-            <h2 class="royal-serif" style="font-size: 1.32rem; color: #fde047;">
-                👑 Prueba de la Corona Acuática
-            </h2>
-            <p style="font-size: 0.9rem; color: #cffafe; margin-top: 2px;">
-                ¡Vamos <strong id="guestLabel2" style="color: #fde047;">Invitado(a)</strong>! Atrapa o toca 7 tesoros
-            </p>
+    // Generar código único consistente según el nombre del invitado
+    function generarCodigoPase(nombre) {
+      let hash = 0;
+      for (let i = 0; i < nombre.length; i++) {
+        hash = ((hash << 5) - hash) + nombre.charCodeAt(i);
+        hash |= 0;
+      }
+      const num = Math.abs(hash % 900) + 100;
+      return `VIP-AMELIA5-${num}`;
+    }
 
-            <div class="progress-track">
-                <div id="progressBarFill" class="progress-bar-fill"></div>
-                <div id="progressText" class="progress-text">0 / 7 Tesoros</div>
-            </div>
+    const codigoPase = generarCodigoPase(nombreInvitado);
 
-            <div class="game-stage" id="gameStage">
-                <canvas id="gameCanvas"></canvas>
-            </div>
+    // Inicializar textos personalizados
+    window.addEventListener("DOMContentLoaded", () => {
+      crearBurbujasFondo();
 
-            <p style="font-size: 0.84rem; color: #bae6fd; margin-top: 10px;">
-                👆 Mueve la corona flotante o toca las estrellas y burbujas
-            </p>
-        </section>
+      // Mostrar panel organizador SOLO si la URL incluye ?admin=1
+      if (isAdmin) {
+        document.getElementById("adminPanel").classList.remove("hidden");
+      }
 
-        <!-- ETAPA 3: ¡EL BOLETO DORADO VIP! -->
-        <section id="stage3" class="screen">
-            <div class="ticket-outer">
-                <div class="ticket-inner">
-                    <div class="ticket-ribbon">★ BOLETO DORADO REAL — PASE VIP DE PISCINA ★</div>
+      if (rawInvitado && rawInvitado.trim() !== "") {
+        document.getElementById("greeting1").textContent = `¡Hola, ${nombreInvitado}! ✨`;
+        document.getElementById("gameGuestTag").textContent = nombreInvitado;
+      }
 
-                    <div class="vip-guest-card">
-                        <span class="vip-guest-label">Invitado(a) Especial:</span>
-                        <span id="guestLabelTicket" class="vip-guest-name">Invitado(a) Especial</span>
-                    </div>
+      document.getElementById("ticketGuestName").textContent = nombreInvitado;
+      document.getElementById("ticketCode").textContent = `CÓDIGO DE ACCESO: ${codigoPase}`;
 
-                    <div style="font-size: 2rem; margin: 2px 0;">👑🏊‍♀️🌊</div>
-                    <h2 class="royal-serif celebrant-title">Princesa Amelia</h2>
-                    <div class="age-pill">✨ Cumpleaños #5 • Fiesta Real de Piscina ✨</div>
+      const mensajeWA = `¡Hola! 👑💦 Soy *${nombreInvitado}*, ya gané mi Boleto Dorado (${codigoPase}) y confirmo mi asistencia al cumpleaños #5 de la Princesa Amelia el 29 de noviembre a las 10:00 a.m. en Condominio Altamira. ¡Nos vemos en la piscina! 🎉`;
+      document.getElementById("btnWhatsapp").href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensajeWA)}`;
 
-                    <div class="details-box">
-                        <div class="detail-item">
-                            <span class="icon">🗓️</span>
-                            <div>
-                                <span class="label">Fecha y Hora</span>
-                                <strong>Domingo 29 de Noviembre • 10:00 AM</strong>
-                            </div>
-                        </div>
+      initScratchCard();
+    });
 
-                        <div class="detail-item">
-                            <span class="icon">🏰</span>
-                            <div>
-                                <span class="label">Lugar del Castillo</span>
-                                <strong>Condominio Altamira, San Pablo de Heredia</strong>
-                            </div>
-                        </div>
-                    </div>
+    // Funciones del Panel Organizador (?admin=1)
+    let ultimoEnlaceGenerado = "";
 
-                    <div class="swim-reminder">
-                        👙🩳 ¡No olvides tu traje de baño y bloqueador!
-                    </div>
-                </div>
-            </div>
+    function generarEnlaceInvitado() {
+      const input = document.getElementById("adminGuestInput").value.trim();
+      if (!input) {
+        alert("Por favor escribe el nombre del invitado.");
+        return;
+      }
+      const baseUrl = window.location.origin + window.location.pathname;
+      ultimoEnlaceGenerado = `${baseUrl}?invitado=${encodeURIComponent(input)}`;
+      document.getElementById("generatedUrlText").textContent = ultimoEnlaceGenerado;
+      document.getElementById("adminResult").classList.remove("hidden");
+    }
 
-            <div class="ticket-actions">
-                <a id="btnConfirmWhatsapp" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold btn-whatsapp">
-                    ✅ Confirmar por WhatsApp
-                </a>
+    function copiarEnlace() {
+      if (!ultimoEnlaceGenerado) return;
+      navigator.clipboard.writeText(ultimoEnlaceGenerado).then(() => {
+        alert("¡Enlace personalizado copiado! Ya puedes pegarlo en WhatsApp.");
+      }).catch(() => {
+        prompt("Copia este enlace:", ultimoEnlaceGenerado);
+      });
+    }
 
-                <a href="https://maps.google.com/?q=Condominio+Altamira,+San+Pablo,+Heredia" target="_blank" rel="noopener noreferrer" class="btn-gold btn-aqua">
-                    📍 Cómo llegar (Maps)
-                </a>
+    function probarComoInvitado() {
+      if (ultimoEnlaceGenerado) {
+        window.location.href = ultimoEnlaceGenerado;
+      }
+    }
 
-                <button id="btnDownloadPng" class="btn-gold btn-outline" type="button">
-                    🎟️ Descargar Boleto (PNG)
-                </button>
-            </div>
-        </section>
+    // Burbujas decorativas
+    function crearBurbujasFondo() {
+      const container = document.getElementById("bgParticles");
+      for (let i = 0; i < 16; i++) {
+        const b = document.createElement("div");
+        b.className = "bubble";
+        const size = Math.random() * 24 + 10;
+        b.style.width = `${size}px`;
+        b.style.height = `${size}px`;
+        b.style.left = `${Math.random() * 100}%`;
+        b.style.animationDuration = `${Math.random() * 8 + 7}s`;
+        b.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(b);
+      }
+    }
 
-    </main>
+    // ==========================================
+    // LÓGICA PANTALLA 1: RASPA Y GANA
+    // ==========================================
+    function initScratchCard() {
+      const canvas = document.getElementById("scratchCanvas");
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            /* ======================================================================
-               CONFIGURACIÓN DE WHATSAPP (CAMBIA ESTE NÚMERO POR EL TUYO)
-               ====================================================================== */
-            const WHATSAPP_PHONE = "50688888888";
+      // Capa mágica violeta y dorada
+      const grad = ctx.createLinearGradient(0, 0, width, height);
+      grad.addColorStop(0, "#7c3aed");
+      grad.addColorStop(0.5, "#a855f7");
+      grad.addColorStop(1, "#06b6d4");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, width, height);
 
-            /* ======================================================================
-               ESTADO GLOBAL DE LA APLICACIÓN
-               ====================================================================== */
-            let guestName = "Invitado(a) Especial";
-            let soundEnabled = true;
-            let audioCtx = null;
-            let scratchRevealed = false;
-            let scratchStrokeCount = 0;
-            let gameActive = false;
-            let caughtCount = 0;
-            const TARGET_CATCHES = 7;
+      // Estrellitas decorativas sobre la capa raspable
+      ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
+      for (let i = 0; i < 30; i++) {
+        ctx.beginPath();
+        ctx.arc(Math.random() * width, Math.random() * height, Math.random() * 3 + 1, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
-            /* ======================================================================
-               1. UTILIDADES DE AUDIO SINTETIZADO (CON TRY/CATCH SEGURO)
-               ====================================================================== */
-            function playChime(type) {
-                if (!soundEnabled) return;
-                try {
-                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                    if (!AudioContextClass) return;
-                    if (!audioCtx) {
-                        audioCtx = new AudioContextClass();
-                    }
-                    if (audioCtx.state === "suspended") {
-                        audioCtx.resume();
-                    }
+      ctx.fillStyle = "#fef08a";
+      ctx.font = "bold 18px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("✨ RASPA AQUÍ ✨", width / 2, height / 2 - 6);
+      ctx.font = "13px sans-serif";
+      ctx.fillStyle = "#ffffff";
+      ctx.fillText("Descubre el secreto real", width / 2, height / 2 + 18);
 
-                    const now = audioCtx.currentTime;
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
+      let isDrawing = false;
+      let revelado = false;
 
-                    if (type === "catch") {
-                        osc.type = "sine";
-                        osc.frequency.setValueAtTime(587.33, now);
-                        osc.frequency.exponentialRampToValueAtTime(987.77, now + 0.14);
-                        gain.gain.setValueAtTime(0.14, now);
-                        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
-                        osc.start(now);
-                        osc.stop(now + 0.19);
-                    } else if (type === "fanfare") {
-                        const notes = [523.25, 659.25, 783.99, 1046.5];
-                        notes.forEach((freq, idx) => {
-                            const o = audioCtx.createOscillator();
-                            const g = audioCtx.createGain();
-                            o.type = "triangle";
-                            o.connect(g);
-                            g.connect(audioCtx.destination);
-                            o.frequency.setValueAtTime(freq, now + idx * 0.11);
-                            g.gain.setValueAtTime(0.15, now + idx * 0.11);
-                            g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.11 + 0.35);
-                            o.start(now + idx * 0.11);
-                            o.stop(now + idx * 0.11 + 0.36);
-                        });
-                    }
-                } catch (err) {
-                    // Ignorar silenciosamente si el navegador bloquea Web Audio
-                }
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: (clientX - rect.left) * (width / rect.width),
+          y: (clientY - rect.top) * (height / rect.height)
+        };
+      }
+
+      function scratch(e) {
+        if (!isDrawing || revelado) return;
+        e.preventDefault();
+        const pos = getPos(e);
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 24, 0, Math.PI * 2);
+        ctx.fill();
+        checkScratchProgress();
+      }
+
+      function checkScratchProgress() {
+        const imageData = ctx.getImageData(0, 0, width, height).data;
+        let transparent = 0;
+        const totalPixels = imageData.length / 4;
+        for (let i = 3; i < imageData.length; i += 16) {
+          if (imageData[i] < 128) transparent++;
+        }
+        const percent = Math.min(100, Math.round((transparent / (totalPixels / 4)) * 100));
+        document.getElementById("scratchProgress").style.width = `${percent}%`;
+
+        if (percent >= 48 && !revelado) {
+          revelado = true;
+          canvas.style.transition = "opacity 0.5s ease";
+          canvas.style.opacity = "0";
+          setTimeout(() => canvas.classList.add("hidden"), 500);
+          document.getElementById("scratchProgress").style.width = "100%";
+          document.getElementById("btnToGame").classList.remove("hidden");
+          lanzarConfeti(25);
+        }
+      }
+
+      canvas.addEventListener("mousedown", (e) => { isDrawing = true; scratch(e); });
+      window.addEventListener("mouseup", () => { isDrawing = false; });
+      canvas.addEventListener("mousemove", scratch);
+
+      canvas.addEventListener("touchstart", (e) => { isDrawing = true; scratch(e); }, { passive: false });
+      window.addEventListener("touchend", () => { isDrawing = false; });
+      canvas.addEventListener("touchmove", scratch, { passive: false });
+    }
+
+    // ==========================================
+    // LÓGICA PANTALLA 2: MINIJUEGO DE PISCINA
+    // ==========================================
+    function iniciarJuego() {
+      document.getElementById("screen1").classList.add("hidden");
+      document.getElementById("screen2").classList.remove("hidden");
+
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+
+      let score = 0;
+      const META = 8;
+      let gameActive = true;
+
+      const player = { x: W / 2, y: H - 36, width: 70 };
+      const items = [];
+      const emojis = ["👑", "⭐", "💎", "🐚", "🦄"];
+
+      function moverJugador(clientX) {
+        const rect = canvas.getBoundingClientRect();
+        const relX = (clientX - rect.left) * (W / rect.width);
+        player.x = Math.max(35, Math.min(W - 35, relX));
+      }
+
+      canvas.addEventListener("mousemove", (e) => moverJugador(e.clientX));
+      canvas.addEventListener("touchmove", (e) => {
+        e.preventDefault();
+        moverJugador(e.touches[0].clientX);
+      }, { passive: false });
+      canvas.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        moverJugador(e.touches[0].clientX);
+      }, { passive: false });
+
+      let spawnTimer = 0;
+
+      function loop() {
+        if (!gameActive) return;
+        ctx.clearRect(0, 0, W, H);
+
+        // Olas de piscina en el fondo del canvas
+        ctx.fillStyle = "rgba(6, 182, 212, 0.25)";
+        ctx.fillRect(0, H - 55, W, 55);
+
+        // Generar nuevos tesoros
+        spawnTimer++;
+        if (spawnTimer % 36 === 0) {
+          items.push({
+            x: Math.random() * (W - 50) + 25,
+            y: -25,
+            speed: Math.random() * 1.8 + 2.4,
+            emoji: emojis[Math.floor(Math.random() * emojis.length)]
+          });
+        }
+
+        // Dibujar jugador (Concha real receptora)
+        ctx.font = "44px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("🐚", player.x, player.y);
+
+        // Actualizar y dibujar objetos que caen
+        for (let i = items.length - 1; i >= 0; i--) {
+          const it = items[i];
+          it.y += it.speed;
+          ctx.font = "30px sans-serif";
+          ctx.fillText(it.emoji, it.x, it.y);
+
+          // Colisión generosa para niños
+          if (Math.abs(it.x - player.x) < 42 && Math.abs(it.y - player.y) < 35) {
+            items.splice(i, 1);
+            score++;
+            document.getElementById("scoreText").textContent = `${score} / ${META}`;
+
+            if (score >= META) {
+              gameActive = false;
+              setTimeout(mostrarBoletoDorado, 350);
+              return;
             }
-
-            const btnToggleSound = document.getElementById("btnToggleSound");
-            btnToggleSound.addEventListener("click", () => {
-                soundEnabled = !soundEnabled;
-                btnToggleSound.textContent = soundEnabled ? "🔊" : "🔇";
-                showToast(soundEnabled ? "🔊 Sonido activado" : "🔇 Sonido silenciado");
-            });
-
-            function showToast(msg) {
-                const toastEl = document.getElementById("toast");
-                toastEl.textContent = msg;
-                toastEl.classList.add("show");
-                clearTimeout(toastEl._timer);
-                toastEl._timer = setTimeout(() => {
-                    toastEl.classList.remove("show");
-                }, 2600);
-            }
-
-            /* ======================================================================
-               2. PERSONALIZACIÓN DE INVITADO Y MODO ORGANIZADOR
-               ====================================================================== */
-            function setGuestName(rawName) {
-                const clean = (rawName || "").trim();
-                guestName = clean.length > 0 ? clean : "Invitado(a) Especial";
-
-                document.getElementById("guestLabel1").textContent = guestName;
-                document.getElementById("guestLabelDecree").textContent = guestName;
-                document.getElementById("guestLabel2").textContent = guestName;
-                document.getElementById("guestLabelTicket").textContent = guestName;
-
-                const waText = `¡Hola! Soy ${guestName} 👑🏊‍♀️ Ya gané mi Boleto Dorado VIP y confirmo asistencia al Cumpleaños #5 Pool Party de la Princesa Amelia (Domingo 29 de Noviembre, 10:00 AM en Condominio Altamira). ✨`;
-                document.getElementById("btnConfirmWhatsapp").href =
-                    `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(waText)}`;
-            }
-
-            function readGuestParam() {
-                try {
-                    const params = new URLSearchParams(window.location.search);
-                    const val = params.get("invitado");
-                    return val && val.trim().length > 0 ? val.trim() : null;
-                } catch (e) {
-                    return null;
-                }
-            }
-
-            const organizerModal = document.getElementById("organizerModal");
-            const organizerInput = document.getElementById("organizerInput");
-            const linkResultBox = document.getElementById("linkResultBox");
-            const linkPreviewText = document.getElementById("linkPreviewText");
-            let currentGeneratedUrl = "";
-
-            document.getElementById("btnOpenOrganizer").addEventListener("click", () => {
-                organizerModal.classList.add("open");
-            });
-
-            document.getElementById("btnCreateLink").addEventListener("click", () => {
-                const typed = organizerInput.value.trim();
-                if (!typed) {
-                    showToast("✍️ Escribe el nombre del invitado primero");
-                    organizerInput.focus();
-                    return;
-                }
-                setGuestName(typed);
-                const baseHref = window.location.href.split("?")[0].split("#")[0];
-                currentGeneratedUrl = `${baseHref}?invitado=${encodeURIComponent(typed)}`;
-                linkPreviewText.textContent = currentGeneratedUrl;
-                linkResultBox.style.display = "block";
-                showToast("✨ Enlace personalizado generado");
-            });
-
-            document.getElementById("btnCopyLink").addEventListener("click", async () => {
-                if (!currentGeneratedUrl) return;
-                let copied = false;
-                try {
-                    if (navigator.clipboard && window.isSecureContext) {
-                        await navigator.clipboard.writeText(currentGeneratedUrl);
-                        copied = true;
-                    }
-                } catch (e) {
-                    copied = false;
-                }
-
-                if (!copied) {
-                    const tempArea = document.createElement("textarea");
-                    tempArea.value = currentGeneratedUrl;
-                    tempArea.style.position = "fixed";
-                    tempArea.style.opacity = "0";
-                    document.body.appendChild(tempArea);
-                    tempArea.focus();
-                    tempArea.select();
-                    try {
-                        copied = document.execCommand("copy");
-                    } catch (err) {
-                        copied = false;
-                    }
-                    document.body.removeChild(tempArea);
-                }
-
-                showToast(copied ? "📋 ¡Enlace copiado para WhatsApp!" : "⚠️ Selecciona y copia el enlace arriba");
-            });
-
-            document.getElementById("btnTestGuest").addEventListener("click", () => {
-                const typed = organizerInput.value.trim();
-                if (typed) setGuestName(typed);
-                organizerModal.classList.remove("open");
-                resetToStage1();
-            });
-
-            document.getElementById("btnPreviewNoLink").addEventListener("click", () => {
-                setGuestName("Invitado(a) Especial");
-                organizerModal.classList.remove("open");
-                resetToStage1();
-            });
-
-            function switchScreen(screenId) {
-                document.querySelectorAll(".screen").forEach((el) => el.classList.remove("active"));
-                document.getElementById(screenId).classList.add("active");
-            }
-
-            function resetToStage1() {
-                gameActive = false;
-                scratchRevealed = false;
-                scratchStrokeCount = 0;
-                document.getElementById("stage1NextWrap").style.display = "none";
-                document.getElementById("btnRevealFallback").style.display = "none";
-                const sc = document.getElementById("scratchCanvas");
-                sc.style.opacity = "1";
-                sc.style.pointerEvents = "auto";
-                switchScreen("stage1");
-                initScratchCard();
-            }
-
-            /* ======================================================================
-               3. ETAPA 1: PERGAMINO MÁGICO DE AGUA (CANVAS RASPA Y GANA)
-               ====================================================================== */
-            const scratchBox = document.getElementById("scratchBox");
-            const scratchCanvas = document.getElementById("scratchCanvas");
-            const scratchCtx = scratchCanvas.getContext("2d");
-            let isDrawingScratch = false;
-            let fallbackTimer = null;
-
-            function initScratchCard() {
-                const rect = scratchBox.getBoundingClientRect();
-                const w = Math.max(240, Math.floor(rect.width));
-                const h = Math.max(220, Math.floor(rect.height));
-                scratchCanvas.width = w;
-                scratchCanvas.height = h;
-
-                // Degradado violeta real y turquesa agua
-                const grad = scratchCtx.createLinearGradient(0, 0, w, h);
-                grad.addColorStop(0, "#5b21b6");
-                grad.addColorStop(0.55, "#7c3aed");
-                grad.addColorStop(1, "#0891b2");
-                scratchCtx.globalCompositeOperation = "source-over";
-                scratchCtx.fillStyle = grad;
-                scratchCtx.fillRect(0, 0, w, h);
-
-                // Burbujas y destellos dorados
-                for (let i = 0; i < 85; i++) {
-                    const bx = Math.random() * w;
-                    const by = Math.random() * h;
-                    const br = 2 + Math.random() * 5;
-                    if (i % 2 === 0) {
-                        scratchCtx.strokeStyle = "rgba(103, 232, 249, 0.75)";
-                        scratchCtx.lineWidth = 1.4;
-                        scratchCtx.beginPath();
-                        scratchCtx.arc(bx, by, br, 0, Math.PI * 2);
-                        scratchCtx.stroke();
-                    } else {
-                        scratchCtx.fillStyle = "rgba(253, 224, 71, 0.85)";
-                        scratchCtx.beginPath();
-                        scratchCtx.arc(bx, by, br * 0.55, 0, Math.PI * 2);
-                        scratchCtx.fill();
-                    }
-                }
-
-                // Marco dorado interior
-                scratchCtx.strokeStyle = "#fde047";
-                scratchCtx.lineWidth = 2.5;
-                scratchCtx.strokeRect(10, 10, w - 20, h - 20);
-
-                // Texto guía
-                scratchCtx.fillStyle = "#fde047";
-                scratchCtx.font = "bold 22px sans-serif";
-                scratchCtx.textAlign = "center";
-                scratchCtx.fillText("🫧 👑 🫧", w / 2, h / 2 - 28);
-
-                scratchCtx.fillStyle = "#ffffff";
-                scratchCtx.font = "bold 16px sans-serif";
-                scratchCtx.fillText("¡Raspa aquí con tu dedito!", w / 2, h / 2 + 4);
-                scratchCtx.font = "600 13px sans-serif";
-                scratchCtx.fillStyle = "#cffafe";
-                scratchCtx.fillText("Descubre el mensaje secreto de Amelia", w / 2, h / 2 + 28);
-
-                clearTimeout(fallbackTimer);
-                fallbackTimer = setTimeout(() => {
-                    if (!scratchRevealed) {
-                        document.getElementById("btnRevealFallback").style.display = "inline-block";
-                    }
-                }, 2500);
-            }
-
-            function eraseAt(clientX, clientY) {
-                if (scratchRevealed) return;
-                const rect = scratchCanvas.getBoundingClientRect();
-                const x = ((clientX - rect.left) / rect.width) * scratchCanvas.width;
-                const y = ((clientY - rect.top) / rect.height) * scratchCanvas.height;
-
-                scratchCtx.globalCompositeOperation = "destination-out";
-                scratchCtx.beginPath();
-                scratchCtx.arc(x, y, 28, 0, Math.PI * 2);
-                scratchCtx.fill();
-
-                scratchStrokeCount++;
-                if (scratchStrokeCount === 4) {
-                    document.getElementById("btnRevealFallback").style.display = "inline-block";
-                }
-                if (scratchStrokeCount % 8 === 0) {
-                    checkScratchCompletion();
-                }
-            }
-
-            function checkScratchCompletion() {
-                if (scratchRevealed) return;
-                try {
-                    const imgData = scratchCtx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height);
-                    const pixels = imgData.data;
-                    let transparentCount = 0;
-                    const step = 16; // Muestreo rápido de 1 cada 4 píxeles
-                    for (let i = 3; i < pixels.length; i += step) {
-                        if (pixels[i] === 0) transparentCount++;
-                    }
-                    const totalSampled = pixels.length / step;
-                    if (transparentCount / totalSampled > 0.38) {
-                        revealScratchComplete();
-                    }
-                } catch (e) {
-                    if (scratchStrokeCount > 28) revealScratchComplete();
-                }
-            }
-
-            function revealScratchComplete() {
-                if (scratchRevealed) return;
-                scratchRevealed = true;
-                playChime("catch");
-                scratchCanvas.style.opacity = "0";
-                scratchCanvas.style.pointerEvents = "none";
-                document.getElementById("btnRevealFallback").style.display = "none";
-                document.getElementById("stage1NextWrap").style.display = "block";
-            }
-
-            // Soporte combinado Pointer + Touch para máxima compatibilidad móvil
-            scratchCanvas.addEventListener("pointerdown", (e) => {
-                isDrawingScratch = true;
-                eraseAt(e.clientX, e.clientY);
-            });
-            scratchCanvas.addEventListener("pointermove", (e) => {
-                if (!isDrawingScratch) return;
-                eraseAt(e.clientX, e.clientY);
-            });
-            window.addEventListener("pointerup", () => {
-                isDrawingScratch = false;
-            });
-
-            scratchCanvas.addEventListener("touchstart", (e) => {
-                if (e.touches.length > 0) {
-                    isDrawingScratch = true;
-                    eraseAt(e.touches[0].clientX, e.touches[0].clientY);
-                }
-            }, { passive: true });
-            scratchCanvas.addEventListener("touchmove", (e) => {
-                if (!isDrawingScratch || e.touches.length === 0) return;
-                eraseAt(e.touches[0].clientX, e.touches[0].clientY);
-            }, { passive: true });
-            scratchCanvas.addEventListener("touchend", () => {
-                isDrawingScratch = false;
-            }, { passive: true });
-
-            document.getElementById("btnRevealFallback").addEventListener("click", revealScratchComplete);
-            document.getElementById("btnGoStage2").addEventListener("click", () => {
-                switchScreen("stage2");
-                startAquaticGame();
-            });
-
-            /* ======================================================================
-               4. ETAPA 2: LA PRUEBA DE LA CORONA ACUÁTICA (ATRAPA 7 TESOROS)
-               ====================================================================== */
-            const gameStage = document.getElementById("gameStage");
-            const gameCanvas = document.getElementById("gameCanvas");
-            const gameCtx = gameCanvas.getContext("2d");
-
-            let crownPlayer = { x: 160, y: 280 };
-            let treasures = [];
-            let sparkles = [];
-            let frameTick = 0;
-
-            const TREASURE_ICONS = ["⭐", "👑", "🫧", "🛟", "🐚", "💎"];
-
-            function startAquaticGame() {
-                const rect = gameStage.getBoundingClientRect();
-                gameCanvas.width = Math.max(260, Math.floor(rect.width));
-                gameCanvas.height = Math.max(300, Math.floor(rect.height));
-
-                caughtCount = 0;
-                treasures = [];
-                sparkles = [];
-                frameTick = 0;
-                crownPlayer.x = gameCanvas.width / 2;
-                crownPlayer.y = gameCanvas.height - 46;
-
-                updateCatchProgress();
-                gameActive = true;
-                spawnTreasure();
-                requestAnimationFrame(runGameLoop);
-            }
-
-            function updateCatchProgress() {
-                const pct = Math.min(100, (caughtCount / TARGET_CATCHES) * 100);
-                document.getElementById("progressBarFill").style.width = `${pct}%`;
-                document.getElementById("progressText").textContent = `${caughtCount} / ${TARGET_CATCHES} Tesoros`;
-            }
-
-            function spawnTreasure() {
-                const margin = 34;
-                const icon = TREASURE_ICONS[Math.floor(Math.random() * TREASURE_ICONS.length)];
-                treasures.push({
-                    x: margin + Math.random() * (gameCanvas.width - margin * 2),
-                    y: -26,
-                    vy: 1.8 + Math.random() * 1.4,
-                    swayOffset: Math.random() * Math.PI * 2,
-                    icon: icon,
-                    radius: 26
-                });
-            }
-
-            function emitCatchSparkles(x, y) {
-                for (let i = 0; i < 14; i++) {
-                    const angle = (Math.PI * 2 * i) / 14;
-                    const speed = 1.8 + Math.random() * 3;
-                    sparkles.push({
-                        x,
-                        y,
-                        vx: Math.cos(angle) * speed,
-                        vy: Math.sin(angle) * speed,
-                        alpha: 1,
-                        color: i % 2 === 0 ? "#fde047" : "#67e8f9"
-                    });
-                }
-            }
-
-            function collectTreasure(item) {
-                caughtCount++;
-                playChime("catch");
-                emitCatchSparkles(item.x, item.y);
-                updateCatchProgress();
-
-                if (caughtCount >= TARGET_CATCHES) {
-                    gameActive = false;
-                    setTimeout(() => {
-                        switchScreen("stage3");
-                        playChime("fanfare");
-                        startConfettiCelebration();
-                    }, 380);
-                }
-            }
-
-            function handleGamePointer(clientX, clientY, isTap) {
-                if (!gameActive) return;
-                const rect = gameCanvas.getBoundingClientRect();
-                const gx = ((clientX - rect.left) / rect.width) * gameCanvas.width;
-                const gy = ((clientY - rect.top) / rect.height) * gameCanvas.height;
-
-                crownPlayer.x = Math.max(36, Math.min(gameCanvas.width - 36, gx));
-
-                if (isTap) {
-                    for (let i = treasures.length - 1; i >= 0; i--) {
-                        const t = treasures[i];
-                        const dist = Math.hypot(t.x - gx, t.y - gy);
-                        if (dist < 54) {
-                            treasures.splice(i, 1);
-                            collectTreasure(t);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            gameCanvas.addEventListener("pointerdown", (e) => handleGamePointer(e.clientX, e.clientY, true));
-            gameCanvas.addEventListener("pointermove", (e) => handleGamePointer(e.clientX, e.clientY, false));
-            gameCanvas.addEventListener("touchstart", (e) => {
-                if (e.touches.length > 0) handleGamePointer(e.touches[0].clientX, e.touches[0].clientY, true);
-            }, { passive: true });
-            gameCanvas.addEventListener("touchmove", (e) => {
-                if (e.touches.length > 0) handleGamePointer(e.touches[0].clientX, e.touches[0].clientY, false);
-            }, { passive: true });
-
-            function runGameLoop() {
-                if (!gameActive) return;
-                frameTick++;
-
-                const w = gameCanvas.width;
-                const h = gameCanvas.height;
-                gameCtx.clearRect(0, 0, w, h);
-
-                // Olas suaves de piscina en la parte inferior
-                const poolLine = h - 76;
-                gameCtx.fillStyle = "rgba(103, 232, 249, 0.2)";
-                gameCtx.beginPath();
-                gameCtx.moveTo(0, poolLine);
-                for (let x = 0; x <= w; x += 18) {
-                    const waveY = poolLine + Math.sin(x * 0.045 + frameTick * 0.06) * 5;
-                    gameCtx.lineTo(x, waveY);
-                }
-                gameCtx.lineTo(w, h);
-                gameCtx.lineTo(0, h);
-                gameCtx.closePath();
-                gameCtx.fill();
-
-                // Generar nuevos tesoros suavemente
-                if (frameTick % 45 === 0 && treasures.length < 5) {
-                    spawnTreasure();
-                }
-
-                // Dibujar flotador turquesa y corona receptora del jugador
-                gameCtx.strokeStyle = "#67e8f9";
-                gameCtx.lineWidth = 5;
-                gameCtx.beginPath();
-                gameCtx.ellipse(crownPlayer.x, crownPlayer.y + 13, 34, 11, 0, 0, Math.PI * 2);
-                gameCtx.stroke();
-
-                gameCtx.font = "42px sans-serif";
-                gameCtx.textAlign = "center";
-                gameCtx.textBaseline = "middle";
-                gameCtx.fillText("👑", crownPlayer.x, crownPlayer.y - 2);
-
-                // Actualizar y dibujar tesoros flotantes
-                for (let i = treasures.length - 1; i >= 0; i--) {
-                    const t = treasures[i];
-                    t.y += t.vy;
-                    const drawX = t.x + Math.sin(frameTick * 0.05 + t.swayOffset) * 14;
-
-                    gameCtx.font = "34px sans-serif";
-                    gameCtx.fillText(t.icon, drawX, t.y);
-
-                    // Colisión con la corona flotante
-                    const distToCrown = Math.hypot(drawX - crownPlayer.x, t.y - crownPlayer.y);
-                    if (distToCrown < 46) {
-                        treasures.splice(i, 1);
-                        collectTreasure({ x: drawX, y: t.y });
-                        continue;
-                    }
-
-                    // Si llega al fondo sin atraparse, vuelve a subir suavemente para que nunca se pierda
-                    if (t.y > h + 24) {
-                        t.y = -24;
-                    }
-                }
-
-                // Partículas de destello al atrapar
-                for (let i = sparkles.length - 1; i >= 0; i--) {
-                    const s = sparkles[i];
-                    s.x += s.vx;
-                    s.y += s.vy;
-                    s.alpha -= 0.04;
-                    if (s.alpha <= 0) {
-                        sparkles.splice(i, 1);
-                        continue;
-                    }
-                    gameCtx.globalAlpha = s.alpha;
-                    gameCtx.fillStyle = s.color;
-                    gameCtx.beginPath();
-                    gameCtx.arc(s.x, s.y, 4, 0, Math.PI * 2);
-                    gameCtx.fill();
-                }
-                gameCtx.globalAlpha = 1;
-
-                requestAnimationFrame(runGameLoop);
-            }
-
-            /* ======================================================================
-               5. CONFETI REAL AL GANAR EL BOLETO DORADO
-               ====================================================================== */
-            const confettiCanvas = document.getElementById("confettiCanvas");
-            const confettiCtx = confettiCanvas.getContext("2d");
-            let confettiList = [];
-
-            function startConfettiCelebration() {
-                confettiCanvas.width = window.innerWidth;
-                confettiCanvas.height = window.innerHeight;
-                confettiList = [];
-                const palette = ["#fde047", "#f59e0b", "#06b6d4", "#a855f7", "#ffffff"];
-
-                for (let i = 0; i < 110; i++) {
-                    confettiList.push({
-                        x: Math.random() * confettiCanvas.width,
-                        y: -20 - Math.random() * confettiCanvas.height * 0.5,
-                        w: 7 + Math.random() * 7,
-                        h: 5 + Math.random() * 5,
-                        vx: (Math.random() - 0.5) * 2.4,
-                        vy: 2.2 + Math.random() * 3.6,
-                        rot: Math.random() * 360,
-                        vRot: (Math.random() - 0.5) * 8,
-                        color: palette[Math.floor(Math.random() * palette.length)]
-                    });
-                }
-                requestAnimationFrame(animateConfetti);
-            }
-
-            function animateConfetti() {
-                confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-                let alive = 0;
-
-                confettiList.forEach((p) => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    p.rot += p.vRot;
-                    if (p.y < confettiCanvas.height + 30) alive++;
-
-                    confettiCtx.save();
-                    confettiCtx.translate(p.x, p.y);
-                    confettiCtx.rotate((p.rot * Math.PI) / 180);
-                    confettiCtx.fillStyle = p.color;
-                    confettiCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-                    confettiCtx.restore();
-                });
-
-                if (alive > 0) {
-                    requestAnimationFrame(animateConfetti);
-                } else {
-                    confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-                }
-            }
-
-            /* ======================================================================
-               6. GENERADOR DE BOLETO DORADO VIP EN PNG (100% PURO CANVAS SIN TAINT)
-               ====================================================================== */
-            function drawRoundedRect(ctx, x, y, width, height, radius) {
-                ctx.beginPath();
-                ctx.moveTo(x + radius, y);
-                ctx.lineTo(x + width - radius, y);
-                ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-                ctx.lineTo(x + width, y + height - radius);
-                ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-                ctx.lineTo(x + radius, y + height);
-                ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-                ctx.lineTo(x, y + radius);
-                ctx.quadraticCurveTo(x, y, x + radius, y);
-                ctx.closePath();
-            }
-
-            function buildGoldenTicketDataURL() {
-                const canvas = document.createElement("canvas");
-                const w = 800;
-                const h = 1160;
-                canvas.width = w;
-                canvas.height = h;
-                const ctx = canvas.getContext("2d");
-
-                // Fondo exterior violeta real a turquesa piscina
-                const bg = ctx.createLinearGradient(0, 0, 0, h);
-                bg.addColorStop(0, "#4c1d95");
-                bg.addColorStop(0.6, "#2e1065");
-                bg.addColorStop(1, "#164e63");
-                ctx.fillStyle = bg;
-                ctx.fillRect(0, 0, w, h);
-
-                // Marco dorado metálico
-                const goldBorder = ctx.createLinearGradient(0, 0, w, h);
-                goldBorder.addColorStop(0, "#fde047");
-                goldBorder.addColorStop(0.45, "#f59e0b");
-                goldBorder.addColorStop(0.75, "#fef08a");
-                goldBorder.addColorStop(1, "#b45309");
-                drawRoundedRect(ctx, 36, 36, w - 72, h - 72, 38);
-                ctx.fillStyle = goldBorder;
-                ctx.fill();
-
-                // Interior del boleto
-                const innerBg = ctx.createRadialGradient(w / 2, 220, 40, w / 2, h / 2, 700);
-                innerBg.addColorStop(0, "#5b21b6");
-                innerBg.addColorStop(0.68, "#2e1065");
-                innerBg.addColorStop(1, "#164e63");
-                drawRoundedRect(ctx, 50, 50, w - 100, h - 100, 30);
-                ctx.fillStyle = innerBg;
-                ctx.fill();
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = "#fde047";
-                ctx.stroke();
-
-                // Cinta VIP superior
-                drawRoundedRect(ctx, 110, 88, w - 220, 46, 23);
-                ctx.fillStyle = "#fde047";
-                ctx.fill();
-                ctx.fillStyle = "#2e1065";
-                ctx.font = "bold 19px sans-serif";
-                ctx.textAlign = "center";
-                ctx.fillText("★ BOLETO DORADO REAL — PASE VIP DE PISCINA ★", w / 2, 118);
-
-                // Caja del invitado personalizado
-                drawRoundedRect(ctx, 110, 156, w - 220, 86, 18);
-                ctx.fillStyle = "rgba(6, 182, 212, 0.2)";
-                ctx.fill();
-                ctx.lineWidth = 2;
-                ctx.strokeStyle = "#67e8f9";
-                ctx.stroke();
-
-                ctx.fillStyle = "#a5f3fc";
-                ctx.font = "bold 17px sans-serif";
-                ctx.fillText("INVITADO(A) ESPECIAL:", w / 2, 188);
-                ctx.fillStyle = "#ffffff";
-                ctx.font = "bold 32px sans-serif";
-                ctx.fillText(guestName, w / 2, 226);
-
-                // Íconos y título de Amelia
-                ctx.font = "64px sans-serif";
-                ctx.fillText("👑🏊‍♀️🌊", w / 2, 310);
-
-                ctx.fillStyle = "#fde047";
-                ctx.font = "bold 52px Georgia, serif";
-                ctx.fillText("Princesa Amelia", w / 2, 384);
-
-                drawRoundedRect(ctx, 140, 408, w - 280, 44, 22);
-                ctx.fillStyle = "rgba(253, 224, 71, 0.2)";
-                ctx.fill();
-                ctx.strokeStyle = "#fde047";
-                ctx.stroke();
-                ctx.fillStyle = "#fef9c3";
-                ctx.font = "bold 21px sans-serif";
-                ctx.fillText("✨ Cumpleaños #5 • Fiesta Real de Piscina ✨", w / 2, 437);
-
-                // Caja de detalles del evento
-                drawRoundedRect(ctx, 90, 482, w - 180, 320, 22);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.09)";
-                ctx.fill();
-                ctx.strokeStyle = "rgba(253, 224, 71, 0.45)";
-                ctx.stroke();
-
-                ctx.textAlign = "left";
-                ctx.font = "36px sans-serif";
-                ctx.fillText("🗓️", 125, 565);
-                ctx.fillStyle = "#fde047";
-                ctx.font = "bold 18px sans-serif";
-                ctx.fillText("FECHA Y HORA", 185, 540);
-                ctx.fillStyle = "#ffffff";
-                ctx.font = "bold 26px sans-serif";
-                ctx.fillText("Domingo 29 de Noviembre", 185, 574);
-                ctx.fillStyle = "#cffafe";
-                ctx.font = "bold 24px sans-serif";
-                ctx.fillText("10:00 AM", 185, 606);
-
-                ctx.font = "36px sans-serif";
-                ctx.fillText("🏰", 125, 705);
-                ctx.fillStyle = "#fde047";
-                ctx.font = "bold 18px sans-serif";
-                ctx.fillText("LUGAR DEL CASTILLO", 185, 680);
-                ctx.fillStyle = "#ffffff";
-                ctx.font = "bold 26px sans-serif";
-                ctx.fillText("Condominio Altamira", 185, 714);
-                ctx.fillStyle = "#e9d5ff";
-                ctx.font = "23px sans-serif";
-                ctx.fillText("San Pablo de Heredia", 185, 746);
-
-                // Recordatorio de traje de baño
-                drawRoundedRect(ctx, 90, 830, w - 180, 90, 18);
-                ctx.fillStyle = "rgba(6, 182, 212, 0.24)";
-                ctx.fill();
-                ctx.strokeStyle = "#67e8f9";
-                ctx.stroke();
-                ctx.textAlign = "center";
-                ctx.fillStyle = "#ecfeff";
-                ctx.font = "bold 22px sans-serif";
-                ctx.fillText("👙🩳 ¡No olvides tu traje de baño y bloqueador!", w / 2, 883);
-
-                // Pie del boleto
-                ctx.fillStyle = "#e9d5ff";
-                ctx.font = "bold 19px monospace";
-                ctx.fillText("PASE OFICIAL • CUMPLEAÑOS #5 AMELIA", w / 2, 1005);
-
-                return canvas.toDataURL("image/png");
-            }
-
-            document.getElementById("btnDownloadPng").addEventListener("click", () => {
-                try {
-                    const dataUrl = buildGoldenTicketDataURL();
-                    const safeName = guestName.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]/g, "_");
-                    const link = document.createElement("a");
-                    link.download = `Boleto_Dorado_Amelia_${safeName}.png`;
-                    link.href = dataUrl;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-
-                    // Mostrar también en modal de respaldo por si está dentro de WhatsApp / WebView restringido
-                    document.getElementById("ticketPreviewImg").src = dataUrl;
-                    document.getElementById("ticketImageModal").classList.add("open");
-                    showToast("🎟️ ¡Boleto Dorado generado!");
-                } catch (err) {
-                    showToast("📸 Toma captura de pantalla a tu Boleto Dorado");
-                }
-            });
-
-            document.getElementById("btnCloseImageModal").addEventListener("click", () => {
-                document.getElementById("ticketImageModal").classList.remove("open");
-            });
-
-            /* ======================================================================
-               7. ARRANQUE INICIAL AL CARGAR EL DOM
-               ====================================================================== */
-            const invitedFromUrl = readGuestParam();
-            if (invitedFromUrl) {
-                setGuestName(invitedFromUrl);
-                initScratchCard();
-            } else {
-                setGuestName("Invitado(a) Especial");
-                initScratchCard();
-                organizerModal.classList.add("open");
-            }
-
-            window.addEventListener("resize", () => {
-                if (!scratchRevealed && document.getElementById("stage1").classList.contains("active")) {
-                    initScratchCard();
-                }
-            });
-        });
-    </script>
+          } else if (it.y > H + 30) {
+            items.splice(i, 1);
+          }
+        }
+
+        requestAnimationFrame(loop);
+      }
+
+      loop();
+    }
+
+    // ==========================================
+    // LÓGICA PANTALLA 3: BOLETO DORADO Y PNG
+    // ==========================================
+    function mostrarBoletoDorado() {
+      document.getElementById("screen2").classList.add("hidden");
+      document.getElementById("screen3").classList.remove("hidden");
+      lanzarConfeti(65);
+    }
+
+    function lanzarConfeti(cantidad) {
+      const colores = ["#fbbf24", "#a855f7", "#22d3ee", "#f472b6", "#ffffff"];
+      for (let i = 0; i < cantidad; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti-piece";
+        c.style.left = `${Math.random() * 100}vw`;
+        c.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+        c.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+        c.style.animationDuration = `${Math.random() * 2 + 2}s`;
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4200);
+      }
+    }
+
+    function descargarBoletoPNG() {
+      const c = document.createElement("canvas");
+      c.width = 720;
+      c.height = 960;
+      const ctx = c.getContext("2d");
+
+      // Fondo violeta real
+      const bgGrad = ctx.createLinearGradient(0, 0, 720, 960);
+      bgGrad.addColorStop(0, "#3b0764");
+      bgGrad.addColorStop(1, "#1e1b4b");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 720, 960);
+
+      // Tarjeta dorada central
+      const goldGrad = ctx.createLinearGradient(40, 40, 680, 920);
+      goldGrad.addColorStop(0, "#fef08a");
+      goldGrad.addColorStop(0.5, "#fbbf24");
+      goldGrad.addColorStop(1, "#f59e0b");
+      ctx.fillStyle = goldGrad;
+      ctx.beginPath();
+      ctx.roundRect(45, 45, 630, 870, 36);
+      ctx.fill();
+
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 6;
+      ctx.stroke();
+
+      // Textos del boleto
+      ctx.fillStyle = "#78350f";
+      ctx.font = "bold 22px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("🎟️ BOLETO DORADO OFICIAL • PASE VIP 🎟️", 360, 115);
+
+      ctx.fillStyle = "#3b0764";
+      ctx.font = "bold 54px sans-serif";
+      ctx.fillText("Princesa Amelia", 360, 195);
+
+      ctx.fillStyle = "#0e7490";
+      ctx.font = "bold 28px sans-serif";
+      ctx.fillText("👑 Cumpleaños #5 • Pool Party Real 💦", 360, 245);
+
+      // Caja invitado
+      ctx.fillStyle = "rgba(255,255,255,0.82)";
+      ctx.beginPath();
+      ctx.roundRect(90, 290, 540, 130, 22);
+      ctx.fill();
+
+      ctx.fillStyle = "#92400e";
+      ctx.font = "bold 20px sans-serif";
+      ctx.fillText("INVITADO(A) DE HONOR", 360, 335);
+
+      ctx.fillStyle = "#4c1d95";
+      ctx.font = "bold 40px sans-serif";
+      ctx.fillText(nombreInvitado, 360, 390);
+
+      // Detalles del evento
+      ctx.fillStyle = "rgba(255,255,255,0.68)";
+      ctx.beginPath();
+      ctx.roundRect(90, 455, 540, 310, 22);
+      ctx.fill();
+
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#1e1b4b";
+      ctx.font = "bold 26px sans-serif";
+      ctx.fillText("📅 Fecha: Domingo 29 de Noviembre", 125, 515);
+      ctx.fillText("🕙 Hora: 10:00 a.m.", 125, 575);
+      ctx.fillText("📍 Lugar: Condominio Altamira,", 125, 635);
+      ctx.fillText("     San Pablo de Heredia", 125, 672);
+      ctx.fillText("👙 Traer: Traje de baño y paño", 125, 730);
+
+      // Código único abajo
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#78350f";
+      ctx.font = "bold 24px monospace";
+      ctx.fillText(`CÓDIGO DE ACCESO: ${codigoPase}`, 360, 845);
+
+      const dataUrl = c.toDataURL("image/png");
+
+      // Intentar descarga directa y además mostrar modal para celulares
+      const link = document.createElement("a");
+      link.download = `Boleto-Dorado-Amelia-${nombreInvitado.replace(/\s+/g, "-")}.png`;
+      link.href = dataUrl;
+      link.click();
+
+      document.getElementById("ticketPreviewImg").src = dataUrl;
+      document.getElementById("imageModal").classList.remove("hidden");
+    }
+
+    function cerrarModal(e) {
+      if (e.target.id === "imageModal") {
+        document.getElementById("imageModal").classList.add("hidden");
+      }
+    }
+  </script>
 </body>
 </html>
