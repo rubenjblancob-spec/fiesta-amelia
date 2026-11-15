@@ -1,3 +1,4 @@
+Aquí tienes el código completo actualizado de index.html, eliminando los botones de WhatsApp, Guardar Boleto Dorado y Ubicación en Google Maps, dejando el Boleto Dorado VIP limpio y protagonista al final del juego (con una pequeña nota indicando que pueden tomarle captura de pantalla si desean conservarlo):
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -164,12 +165,6 @@
       box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
     }
 
-    .btn-aqua {
-      background: linear-gradient(135deg, #22d3ee 0%, #0284c7 100%);
-      color: #ffffff;
-      box-shadow: 0 6px 18px rgba(6, 182, 212, 0.35);
-    }
-
     .btn-whatsapp {
       background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
       color: #ffffff;
@@ -282,7 +277,7 @@
       border: 3px solid #ffffff;
       box-shadow: 0 15px 35px rgba(245, 158, 11, 0.45);
       overflow: hidden;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
@@ -382,6 +377,12 @@
       padding-top: 8px;
     }
 
+    .screenshot-hint {
+      font-size: 0.82rem;
+      color: #e9d5ff;
+      opacity: 0.9;
+    }
+
     /* Panel Organizador (Solo visible con ?admin=1) */
     .admin-panel {
       background: rgba(15, 23, 42, 0.95);
@@ -430,35 +431,6 @@
       color: var(--dorado-claro);
       word-break: break-all;
       margin-top: 10px;
-    }
-
-    /* Modal para guardar imagen en móviles */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      z-index: 50;
-    }
-
-    .modal-content {
-      background: #2e1065;
-      border: 2px solid var(--dorado);
-      border-radius: 20px;
-      padding: 18px;
-      max-width: 360px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .modal-content img {
-      width: 100%;
-      border-radius: 12px;
-      margin: 12px 0;
-      border: 2px solid #fff;
     }
 
     /* Confeti */
@@ -565,37 +537,12 @@
         <div class="ticket-code" id="ticketCode">PASE REAL #AMELIA-05</div>
       </div>
 
-      <a id="btnWhatsapp" href="#" target="_blank" class="btn btn-whatsapp">
-        💬 Confirmar Asistencia por WhatsApp
-      </a>
-
-      <button class="btn btn-gold" onclick="descargarBoletoPNG()">
-        📥 Guardar Boleto Dorado en mi Celular
-      </button>
-
-      <a href="https://maps.app.goo.gl/Scfvj244yAtn7Dzz9?g_st=ac">
-        📍 Ver Ubicación en Google Maps
-      </a>
+      <p class="screenshot-hint">📸 Toma una captura de pantalla para guardar tu pase</p>
     </div>
 
-  </div>
-
-  <!-- Modal para guardar imagen en móviles -->
-  <div id="imageModal" class="modal-overlay hidden" onclick="cerrarModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <h3 style="color: var(--dorado); margin-bottom: 4px;">🎟️ Tu Boleto Dorado</h3>
-      <p style="font-size: 0.85rem; color: #e9d5ff;">Mantén presionada la imagen para guardarla en tus fotos:</p>
-      <img id="ticketPreviewImg" alt="Boleto Dorado Amelia" />
-      <button class="btn btn-gold" onclick="document.getElementById('imageModal').classList.add('hidden')">Listo</button>
-    </div>
   </div>
 
   <script>
-    // ==========================================
-    // CONFIGURACIÓN PRINCIPAL (EDITA TU NÚMERO AQUÍ)
-    // ==========================================
-    const TELEFONO_WHATSAPP = "50688888888"; // Cambia por tu número con código de país (ej: 50688888888)
-
     // Obtener parámetros de la URL
     const params = new URLSearchParams(window.location.search);
     const rawInvitado = params.get("invitado");
@@ -634,9 +581,6 @@
 
       document.getElementById("ticketGuestName").textContent = nombreInvitado;
       document.getElementById("ticketCode").textContent = `CÓDIGO DE ACCESO: ${codigoPase}`;
-
-      const mensajeWA = `¡Hola! 👑💦 Soy *${nombreInvitado}*, ya gané mi Boleto Dorado (${codigoPase}) y confirmo mi asistencia al cumpleaños #5 de la Princesa Amelia el 29 de noviembre a las 10:00 a.m. en Condominio Altamira. ¡Nos vemos en la piscina! 🎉`;
-      document.getElementById("btnWhatsapp").href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(mensajeWA)}`;
 
       initScratchCard();
     });
@@ -867,7 +811,7 @@
     }
 
     // ==========================================
-    // LÓGICA PANTALLA 3: BOLETO DORADO Y PNG
+    // LÓGICA PANTALLA 3: BOLETO DORADO VIP
     // ==========================================
     function mostrarBoletoDorado() {
       document.getElementById("screen2").classList.add("hidden");
@@ -888,100 +832,7 @@
         setTimeout(() => c.remove(), 4200);
       }
     }
-
-    function descargarBoletoPNG() {
-      const c = document.createElement("canvas");
-      c.width = 720;
-      c.height = 960;
-      const ctx = c.getContext("2d");
-
-      // Fondo violeta real
-      const bgGrad = ctx.createLinearGradient(0, 0, 720, 960);
-      bgGrad.addColorStop(0, "#3b0764");
-      bgGrad.addColorStop(1, "#1e1b4b");
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, 720, 960);
-
-      // Tarjeta dorada central
-      const goldGrad = ctx.createLinearGradient(40, 40, 680, 920);
-      goldGrad.addColorStop(0, "#fef08a");
-      goldGrad.addColorStop(0.5, "#fbbf24");
-      goldGrad.addColorStop(1, "#f59e0b");
-      ctx.fillStyle = goldGrad;
-      ctx.beginPath();
-      ctx.roundRect(45, 45, 630, 870, 36);
-      ctx.fill();
-
-      ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 6;
-      ctx.stroke();
-
-      // Textos del boleto
-      ctx.fillStyle = "#78350f";
-      ctx.font = "bold 22px sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText("🎟️ BOLETO DORADO OFICIAL • PASE VIP 🎟️", 360, 115);
-
-      ctx.fillStyle = "#3b0764";
-      ctx.font = "bold 54px sans-serif";
-      ctx.fillText("Princesa Amelia", 360, 195);
-
-      ctx.fillStyle = "#0e7490";
-      ctx.font = "bold 28px sans-serif";
-      ctx.fillText("👑 Cumpleaños #5 • Pool Party Real 💦", 360, 245);
-
-      // Caja invitado
-      ctx.fillStyle = "rgba(255,255,255,0.82)";
-      ctx.beginPath();
-      ctx.roundRect(90, 290, 540, 130, 22);
-      ctx.fill();
-
-      ctx.fillStyle = "#92400e";
-      ctx.font = "bold 20px sans-serif";
-      ctx.fillText("INVITADO(A) DE HONOR", 360, 335);
-
-      ctx.fillStyle = "#4c1d95";
-      ctx.font = "bold 40px sans-serif";
-      ctx.fillText(nombreInvitado, 360, 390);
-
-      // Detalles del evento
-      ctx.fillStyle = "rgba(255,255,255,0.68)";
-      ctx.beginPath();
-      ctx.roundRect(90, 455, 540, 310, 22);
-      ctx.fill();
-
-      ctx.textAlign = "left";
-      ctx.fillStyle = "#1e1b4b";
-      ctx.font = "bold 26px sans-serif";
-      ctx.fillText("📅 Fecha: Domingo 29 de Noviembre", 125, 515);
-      ctx.fillText("🕙 Hora: 10:00 a.m.", 125, 575);
-      ctx.fillText("📍 Lugar: Condominio Altamira,", 125, 635);
-      ctx.fillText("     San Pablo de Heredia", 125, 672);
-      ctx.fillText("👙 Traer: Traje de baño y paño", 125, 730);
-
-      // Código único abajo
-      ctx.textAlign = "center";
-      ctx.fillStyle = "#78350f";
-      ctx.font = "bold 24px monospace";
-      ctx.fillText(`CÓDIGO DE ACCESO: ${codigoPase}`, 360, 845);
-
-      const dataUrl = c.toDataURL("image/png");
-
-      // Intentar descarga directa y además mostrar modal para celulares
-      const link = document.createElement("a");
-      link.download = `Boleto-Dorado-Amelia-${nombreInvitado.replace(/\s+/g, "-")}.png`;
-      link.href = dataUrl;
-      link.click();
-
-      document.getElementById("ticketPreviewImg").src = dataUrl;
-      document.getElementById("imageModal").classList.remove("hidden");
-    }
-
-    function cerrarModal(e) {
-      if (e.target.id === "imageModal") {
-        document.getElementById("imageModal").classList.add("hidden");
-      }
-    }
   </script>
 </body>
 </html>
+
